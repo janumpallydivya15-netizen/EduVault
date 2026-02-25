@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Upload Assignment</h2>
+
+{% if success %}
+<div class="alert alert-success">{{ success }}</div>
+{% endif %}
+
+{% if error %}
+<div class="alert alert-danger">{{ error }}</div>
+{% endif %}
+
+<div class="card shadow p-4">
+    <form method="POST" enctype="multipart/form-data">
+        <input name="assignment" class="form-control mb-3" placeholder="Assignment Name" required>
+        <input type="file" name="file" class="form-control mb-3" required>
+        <button class="btn btn-success w-100">Upload</button>
+    </form>
+</div>
+
+{% endblock %}

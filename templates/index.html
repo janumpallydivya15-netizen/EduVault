@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="text-center mt-5">
+    <h1 class="fw-bold display-5">Secure Assignment Submission Portal</h1>
+    <p class="lead text-muted">Cloud-Based Academic Management System</p>
+
+    <div class="mt-4">
+        <a href="{{ url_for('student_login') }}" class="btn btn-primary btn-lg m-2">
+            Student Login
+        </a>
+
+        <a href="{{ url_for('instructor_login') }}" class="btn btn-outline-primary btn-lg m-2">
+            Instructor Login
+        </a>
+    </div>
+</div>
+
+{% endblock %}

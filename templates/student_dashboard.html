@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="mb-4">Student Dashboard</h2>
+
+<div class="row mb-4">
+    <div class="col-md-6">
+        <a href="{{ url_for('upload') }}" class="btn btn-success w-100 p-3">
+            Upload Assignment
+        </a>
+    </div>
+
+    <div class="col-md-6">
+        <a href="{{ url_for('history') }}" class="btn btn-outline-primary w-100 p-3">
+            View Submission History
+        </a>
+    </div>
+</div>
+
+<div class="card shadow p-4">
+    <h5>Your Recent Submissions</h5>
+
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th>Assignment</th>
+                <th>Status</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for s in submissions %}
+            <tr>
+                <td>{{ s.assignment }}</td>
+                <td>
+                    <span class="badge bg-success">{{ s.status }}</span>
+                </td>
+                <td>{{ s.date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
