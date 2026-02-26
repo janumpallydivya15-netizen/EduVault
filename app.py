@@ -155,6 +155,7 @@ def student_dashboard():
 @login_required("student")
 def upload():
     if request.method == "POST":
+        print("UPLOAD POST TRIGGERED")
 
         assignment = request.form.get("assignment")
         file = request.files.get("file")
@@ -168,6 +169,7 @@ def upload():
 
         submission_time = datetime.now()
         status = "Late" if submission_time > DEADLINE else "Submitted"
+        print("REACHED SNS BLOCK")   
 
         submissions.append({
             "student": session["user"],
@@ -380,5 +382,6 @@ def logout():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
+
 
 
