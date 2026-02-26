@@ -154,7 +154,6 @@ def student_dashboard():
 @app.route("/upload", methods=["GET", "POST"])
 @login_required("student")
 def upload():
-
     if request.method == "POST":
 
         assignment = request.form.get("assignment")
@@ -175,22 +174,36 @@ def upload():
             "assignment": assignment,
             "filename": filename,
             "status": status,
-            "original_status": status,
             "grade": None,
             "feedback": None,
             "submitted_at": submission_time
         })
 
-        save_submissions()
+        # 🔥 ADD SNS HERE (IMPORTANT)
+        try:
+            response = sns.publish(
+                TopicArn=SNS_TOPIC_ARN,
+                Message=f"""
+New Assignment Uploaded
+
+Student: {session['user']}
+Assignment: {assignment}
+Status: {status}
+Submitted At: {submission_time}
+""",
+                Subject="New Assignment Submission - EduVault"
+            )
+            print("SNS SENT:", response)
+
+        except Exception as e:
+            print("SNS ERROR:", e)
 
         return render_template(
             "upload.html",
-            success="File uploaded successfully!",
-            submitted_time=submission_time.strftime('%d %b %Y %H:%M')
+            success="File uploaded successfully!"
         )
 
     return render_template("upload.html")
-
 @app.route("/history")
 @login_required("student")
 def history():
@@ -367,4 +380,5 @@ def logout():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
+
 
