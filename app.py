@@ -11,7 +11,7 @@ import boto3
 
 USERS_FILE = "users.json"
 UPLOAD_FOLDER = "uploads"
-DEADLINE = datetime(2026, 2, 25, 5, 59)
+DEADLINE = datetime(2026, 3, 1, 9, 30)
 SUBMISSIONS_FILE = "submissions.json"
 
 AWS_REGION = "ap-south-1"
@@ -367,3 +367,4 @@ def logout():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
+
