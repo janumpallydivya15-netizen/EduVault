@@ -14,6 +14,7 @@ class Config:
 
     ALLOWED_EXTENSIONS = {"pdf", "doc", "docx", "ppt", "pptx", "zip"}
 
-    ASSIGNMENT_DEADLINE = datetime(2026, 3, 5, 23, 59, tzinfo=timezone.utc)
+    ASSIGNMENT_DEADLINE = datetime(2026, 3, 10, 23, 59, tzinfo=timezone.utc)
+
 
     LATE_PENALTY = 10
